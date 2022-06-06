@@ -3,7 +3,7 @@
 Created on Sun Jun  5 14:27:28 2022
 @FileName: 멀쩡한 사각형.py
 @author: YUNJUSEOK
-@Link:
+@Link:https://programmers.co.kr/learn/courses/30/lessons/62048
 """
 
 

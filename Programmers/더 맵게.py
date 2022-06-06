@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sun Jun  5 17:30:15 2022
-@FileName: .py
+@FileName: 더 맵게.py
 @author: YUNJUSEOK
-@Link:
+@Link:https://programmers.co.kr/learn/courses/30/lessons/42626
 """
 
 def getscoville( x, y ):

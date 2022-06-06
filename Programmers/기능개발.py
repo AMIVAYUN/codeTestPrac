@@ -3,7 +3,7 @@
 Created on Sun Jun  5 16:39:17 2022
 @FileName: 기능개발.py
 @author: YUNJUSEOK
-@Link:
+@Link:https://programmers.co.kr/learn/courses/30/lessons/42586
 """
 
 
