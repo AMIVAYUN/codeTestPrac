@@ -17,6 +17,7 @@ def getCourse( n, str0 ):
     
     for i in cmb:
         i = sorted( i );
+        #조합에 문제가 안생기게 정렬
         str1 = ""
         for j in i:
             str1 += j;
@@ -44,4 +45,4 @@ def solution(orders, course):
             
     
        
-    return sorted( answer )
+    return sorted( answer ) #결과도 정렬
