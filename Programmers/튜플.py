@@ -8,7 +8,7 @@ Created on Fri Jun 10 15:21:40 2022
 
 
 def solution(s):
-    import re;
+
     s = s [ 1: len( s ) - 1 ];
     lst = []; str0 = "";
     for i in range( len( s ) ):

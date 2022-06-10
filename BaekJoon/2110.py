@@ -10,8 +10,8 @@ Binary Search
 """
 
 def main():
-    '''
-    N, C = map( int, input() );
+    
+    N, C = map( int, input().split() );
 
     house = [];
 
@@ -19,12 +19,8 @@ def main():
         house.append( int( input() ) );
     
     house = sorted( house );
-    '''
-    result = 0;
     
-    N, C = 5, 3 
-    house = [ 1, 2, 4, 8, 9 ];
-    
+   
     
     lt , rt = 1 , house[ -1 ] - house [ 0 ];
     
@@ -42,7 +38,7 @@ def main():
         
         
     
-        print( count ,C )
+       
         if count >= C:
             result = mid;
             lt = mid + 1;
