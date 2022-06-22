@@ -279,6 +279,38 @@ for i in range( 1, N ):
     
 print( len( stack ) )
         
-    
+#ans
+'''
+10
+4 7
+2 2
+1 9
+2 9
+3 7
+4 7
+2 7
+4 7
+1 5
+2 2
+'''
+N = int( input() );
+lst = [];
+
+start, end = 0 , 1;
+
+for i in range( N ):
+    a, b = map( int, input().split() );
+    lst.append( ( a, b ) );
+        
+lst = sorted( lst, key = lambda x: ( x[ end ], x[ start ] ) );
+
+cnt = 0;
+endt = 0;
+for i in range( len( lst ) ):
+    if( lst[ i ][ start ] >= endt ):
+        cnt += 1;
+        endt = lst[ i ][ end ];
+
+print( cnt )
 
 

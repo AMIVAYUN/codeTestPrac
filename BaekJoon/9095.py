@@ -3,7 +3,7 @@
 Created on Mon Jun 20 13:09:50 2022
 @FileName: 9095.py
 @author: YUNJUSEOK
-@Link:
+@Link:https://www.acmicpc.net/problem/9095
 """
 
 def main():

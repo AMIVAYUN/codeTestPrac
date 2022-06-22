@@ -1,10 +1,48 @@
 # -*- coding: utf-8 -*-
 """
 Created on Mon Jun 20 16:14:59 2022
-@FileName: .py
+@FileName: 1932.py
 @author: YUNJUSEOK
-@Link:
+@Link:https://www.acmicpc.net/submit/1932/44836672
 """
+#ans
+
+def main():
+    N = int( input() );
+    lst = [];
+    if( N == 1 ):
+        print( int( input( ) ) );
+        return;
+    for _ in range( N ):
+        lst.append( list(map( int, input().split() ) ) );
+    
+
+    dp = [ [ 0 ] * len( lst[ i ] ) for i in range( len( lst ) ) ]
+    
+    dp[ 0 ][ 0 ] = lst[ 0 ][ 0 ];
+
+    
+    
+    for i in range( N ):
+        for j in range( len( lst[ i ] ) ):
+            if( j == 0 ):
+                dp[ i ][ j ] = dp[ i - 1 ][ j ] + lst[ i ][ j ]
+                
+            elif( j == i ):
+                dp[ i ][ -1 ] = dp[ i - 1 ][ -1 ] + lst[ i ][ -1 ];
+            else:
+                dp[ i ][ j ] = max( dp[ i - 1 ][ j - 1 ], dp[ i - 1 ][ j ] ) + lst[ i ][ j ];
+            
+    
+    print( max( dp[ N - 1 ] ) );
+
+
+
+
+if( __name__ == "__main__"):
+    main()
+    
+
 
 def getMaxRoot( val, idx, depth ):
     global lst,res;
