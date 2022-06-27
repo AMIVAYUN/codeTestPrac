@@ -70,6 +70,7 @@ def t3():
     
     lst = [ 0 ] * 100001; # 0 오타
 
+
     coin = [];
      #try1 memory error
     
