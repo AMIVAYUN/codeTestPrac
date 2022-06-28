@@ -64,7 +64,7 @@ def t2():
     print( coin[ k ] )
 #t2();
 
-
+#answer
 def t3():
     n, k = map( int, input().split() );
     
