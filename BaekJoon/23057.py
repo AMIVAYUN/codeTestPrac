@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Jul  1 19:37:40 2022
-@FileName: .py
+@FileName: 23057.py
 @author: YUNJUSEOK
 @Link:
 """
