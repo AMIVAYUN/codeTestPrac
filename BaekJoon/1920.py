@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Jul 14 13:17:06 2022
-@FileName: .py
+@FileName: 1920.py
 @author: YUNJUSEOK
-@Link:
+@Link:https://www.acmicpc.net/problem/1920
 """
 
 
