@@ -3,7 +3,10 @@
 Created on Sun Jul 17 16:02:59 2022
 @FileName: .py
 @author: YUNJUSEOK
-@Link:
+@Link:https://www.acmicpc.net/problem/16236
+
+문제 생기면 main 지울것 
+
 """
 dx = [ 1, -1, 0, 0 ];
 dy = [ 0, 0, -1, 1 ];
@@ -72,32 +75,39 @@ class babyShark:
         
         return;
 
-graph = [];
+def main():
+    global graph;
+    graph = [];
 
-shark = babyShark( None );
+    shark = babyShark( None );
 
-for i in range( N ):
-    graph_ = list( map( int, input().split() ) );
-    if( graph_.count( 9 ) ):
-        idx = graph_.index( 9 );
-        shark.pos = ( i, idx );
-    for j in graph_:
-        if( j > 6 ):
-            continue
-        fish[ j ] += 1;
-    
-    graph.append( graph_ );
-shark.fish = fish[ 1: ];
-
-
-while( sum( shark.fish ) > 0 ):
-    target = shark.targeting2();
-
-    if( target[ 0 ] == N**2 or target[ 1 ] == shark.pos ):
-        break;
+    for i in range( N ):
+        graph_ = list( map( int, input().split() ) );
+        if( graph_.count( 9 ) ):
+            idx = graph_.index( 9 );
+            shark.pos = ( i, idx );
+        for j in graph_:
+            if( j > 6 ):
+                continue
+            fish[ j ] += 1;
         
-    shark.move( target );
+        graph.append( graph_ );
+    shark.fish = fish[ 1: ];
 
-    
-    
-print( shark.cnt );
+
+    while( sum( shark.fish ) > 0 ):
+        target = shark.targeting2();
+
+        if( target[ 0 ] == N**2 or target[ 1 ] == shark.pos ):
+            break;
+            
+        shark.move( target );
+
+        
+        
+    print( shark.cnt );
+
+
+
+if( __name__ == "__main__" ):
+    main();
