@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sun Jul 17 16:02:59 2022
-@FileName: .py
+@FileName: 16236.py
 @author: YUNJUSEOK
 @Link:https://www.acmicpc.net/problem/16236
 
