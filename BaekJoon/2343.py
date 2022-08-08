@@ -24,10 +24,17 @@ N, M = map( int, input().split() )
 
 lecture = list( map( int, input().split() ) );
 
+Mx = max( lecture );
+
+
+
 lt = 0; rt = sum( lecture );
 ans = 0;
 while lt<= rt:
     mid = ( lt + rt ) // 2;
+    if( mid < Mx ):
+        lt = mid + 1;
+        continue;
     count = 0;
     CDsize = 0;
     
@@ -40,6 +47,8 @@ while lt<= rt:
     
     if( CDsize > 0 ):
         count += 1;
+    
+    
     if( count <= M ):
         rt = mid - 1;
         ans = mid;
