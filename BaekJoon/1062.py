@@ -145,12 +145,14 @@ def s4():
         return;
     Mx = 0;
     
-
-    
+    print( cmb );
+    print( "Sdit", Sdit )
     for case in cmb:
         cnt = 0;
-        tmp = sum( case );
         
+        tmp = sum( case );
+        print( tmp )
+        print( bin( tmp ) )
         for idx in Sdit:
             if( idx & tmp == idx ):
                 cnt += Sdit[ idx ];
