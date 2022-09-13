@@ -6,13 +6,7 @@ Created on Sat Aug 27 17:53:04 2022
 @Link:
 """
 def sol1():
-    # -*- coding: utf-8 -*-
-    """
-    Created on Sat Aug 27 16:29:49 2022
-    @FileName: .py
-    @author: YUNJUSEOK
-    @Link:
-    """
+   
     #sol1
 
     N, M = map( int, input().split() )
