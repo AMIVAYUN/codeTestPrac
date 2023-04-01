@@ -27,6 +27,44 @@ def solution(numbers):
         
     return answer 
 '''
+#SOL WA 1만 맞음
+
+def Can( number, leng ):
+    
+    
+
+    if( leng == 1 ):
+        return True; 
+        
+    if( leng % 2 == 0 ):
+        number = '0' + number
+        
+    if( 1 < leng < 3 ):
+        return '1' in number;
+    
+    next = ( leng ) // 2;
+    
+    
+    
+    if( number[ next ] == '0' ):
+        return False;
+    
+    
+    return Can( number[ : next ], next ) and Can( number[ next + 1: ], next )
+
+
+def solution(numbers):
+    answer = [];
+    
+    for number in numbers:
+        num = bin( number )[ 2: ]
+
+        answer.append( Can( num, len( num ) ) );
+        print( "-")
+    return answer
+
+'''
+'''
 def Can( number, leng ):
     next = leng // 2;
     if( leng == 1 ):
