@@ -1,3 +1,5 @@
+package PM;
+
 import java.util.*;
 class Solution {
     public static int[][] graph = new int[ 101 ][ 101 ];
