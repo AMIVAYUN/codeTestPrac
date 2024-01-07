@@ -3,7 +3,7 @@ import java.nio.Buffer;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Main {
+public class J_4358 {
     static HashMap< String, Integer > map = new HashMap<>();
 
 
