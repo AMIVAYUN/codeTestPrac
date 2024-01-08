@@ -1,7 +1,5 @@
 package CallbyRefTest;
 
-//import lombok.AllArgsConstructor;
-
 public class CallbyReftest {
     public static void main( String[] args ){
         Test test = new Test();
