@@ -5,7 +5,7 @@ import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 
-class Main{
+class J_1138{
     static HashMap< Integer, ArrayList<Integer> > map = new HashMap<>();
     static Stack< Integer > stack = new Stack<>();
     static int[] visit;

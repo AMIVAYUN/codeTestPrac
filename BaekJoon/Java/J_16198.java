@@ -3,10 +3,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.stream.Collectors;
-import java.io.*;
 import java.util.*;
 
-public class Main {
+public class J_16198 {
 
     public static HashMap< String, Integer > map = new HashMap<>();
     public static int k = 0;

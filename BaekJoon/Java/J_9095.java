@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 
 import java.util.*;
 
-public class Main {
+public class J_9095 {
     public static int count;
     public static void main(String[] args) throws IOException {
         // TODO Auto-generated method stub

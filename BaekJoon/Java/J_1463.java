@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.util.*;
 //1463
 
-public class Main {
+public class J_1463 {
     public static int count;
     public static int[] dp;
     public static void main(String[] args) throws IOException {

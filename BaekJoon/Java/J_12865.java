@@ -4,7 +4,8 @@ import java.io.InputStreamReader;
 
 import java.util.*;
 
-public class Main {
+public class J_12865
+{
     public static ArrayList< int[] > arrlst = new ArrayList<>();
     public static void main(String[] args) throws IOException {
         // TODO Auto-generated method stub
@@ -55,140 +56,140 @@ public class Main {
     }
 
 }
-Show less
-
-amiva
-11:14 AM
-package workshoptest;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
-import java.util.*;
-
-public class Main {
-    public static StringBuilder builder = new StringBuilder();
-    public static void main(String[] args) throws IOException {
-        // TODO Auto-generated method stub
-
-        BufferedReader bf = new BufferedReader( new InputStreamReader( System.in ) );
-        int N =  Integer.parseInt( bf.readLine() );
-
-
-        permutations( N );
-
-        System.out.println( builder );
-
-    }
-
-
-    public static ArrayList< Integer > permutations( int n ) {
-
-        ArrayList< Integer > numlst = new ArrayList<>();
-
-        for( int i = 1; i < n + 1; i++ ) {
-            numlst.add( i );
-        }
-
-        Queue< Stack< Integer > > q = new LinkedList<Stack<Integer>>();
-
-        for( int i = 1; i < n + 1; i ++ ) {
-            Stack< Integer > row = new Stack<>();
-            row.add( i );
-            q.add( row );
-        }
-        while( !q.isEmpty() ) {
-
-            Stack< Integer > row = q.poll();
-
-            if( row.size() == n ) {
-                for( int r : row ) {
-                    builder.append( r + " " );
-                }
-                builder.append( "\n" );
-                continue;
-            }
-
-            for( int i = 1; i < n + 1; i ++ ) {
-                if( row.contains( i ) ) {
-                    continue;
-                }
-
-                Stack< Integer > temp = (Stack<Integer>) row.clone();
-                temp.add( i );
-                q.add( temp );
-
-
-            }
-
-
-
-        }
-
-
-
-        return null;
-
-    }
-
-}
-Show less
-
-amiva
-11:27 AM
-
-
-
-
-
-
-
-package workshoptest;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
-import java.util.*;
-//1463
-
-public class Main {
-    public static int count;
-    public static int[] dp;
-    public static void main(String[] args) throws IOException {
-        // TODO Auto-generated method stub
-
-        BufferedReader bf = new BufferedReader( new InputStreamReader( System.in ) );
-        int N =  Integer.parseInt( bf.readLine() );
-
-
-        dp = new int[ N + 1 ];
-        Arrays.fill( dp, 10000000 );
-        dp[ 0 ] = 0; dp[ 1 ] = 0;
-
-
-        for( int i = 1; i < N + 1; i ++ ) {
-            if( i * 3 < N + 1 ) {
-                dp[ i * 3 ] = Math.min( dp[ i * 3 ], dp[ i ] + 1 );
-            }
-
-            if( i * 2 < N + 1 ) {
-                dp[ i * 2 ] = Math.min( dp[ i * 2 ], dp[ i ] + 1 );
-            }
-            if( i + 1 < N + 1 ) {
-                dp[ i + 1 ] = Math.min( dp[ i + 1 ], dp[ i ] + 1 );
-            }
-
-        }
-
-        System.out.println( dp[ N ] );
-
-
-    }
-
-
-
-
-
-}
+//Show less
+//
+//amiva
+//11:14 AM
+//package workshoptest;
+//
+//import java.io.BufferedReader;
+//import java.io.IOException;
+//import java.io.InputStreamReader;
+//
+//import java.util.*;
+//
+//public class Main {
+//    public static StringBuilder builder = new StringBuilder();
+//    public static void main(String[] args) throws IOException {
+//        // TODO Auto-generated method stub
+//
+//        BufferedReader bf = new BufferedReader( new InputStreamReader( System.in ) );
+//        int N =  Integer.parseInt( bf.readLine() );
+//
+//
+//        permutations( N );
+//
+//        System.out.println( builder );
+//
+//    }
+//
+//
+//    public static ArrayList< Integer > permutations( int n ) {
+//
+//        ArrayList< Integer > numlst = new ArrayList<>();
+//
+//        for( int i = 1; i < n + 1; i++ ) {
+//            numlst.add( i );
+//        }
+//
+//        Queue< Stack< Integer > > q = new LinkedList<Stack<Integer>>();
+//
+//        for( int i = 1; i < n + 1; i ++ ) {
+//            Stack< Integer > row = new Stack<>();
+//            row.add( i );
+//            q.add( row );
+//        }
+//        while( !q.isEmpty() ) {
+//
+//            Stack< Integer > row = q.poll();
+//
+//            if( row.size() == n ) {
+//                for( int r : row ) {
+//                    builder.append( r + " " );
+//                }
+//                builder.append( "\n" );
+//                continue;
+//            }
+//
+//            for( int i = 1; i < n + 1; i ++ ) {
+//                if( row.contains( i ) ) {
+//                    continue;
+//                }
+//
+//                Stack< Integer > temp = (Stack<Integer>) row.clone();
+//                temp.add( i );
+//                q.add( temp );
+//
+//
+//            }
+//
+//
+//
+//        }
+//
+//
+//
+//        return null;
+//
+//    }
+//
+//}
+//Show less
+//
+//amiva
+//11:27 AM
+//
+//
+//
+//
+//
+//
+//
+//package workshoptest;
+//
+//import java.io.BufferedReader;
+//import java.io.IOException;
+//import java.io.InputStreamReader;
+//
+//import java.util.*;
+////1463
+//
+//public class Main {
+//    public static int count;
+//    public static int[] dp;
+//    public static void main(String[] args) throws IOException {
+//        // TODO Auto-generated method stub
+//
+//        BufferedReader bf = new BufferedReader( new InputStreamReader( System.in ) );
+//        int N =  Integer.parseInt( bf.readLine() );
+//
+//
+//        dp = new int[ N + 1 ];
+//        Arrays.fill( dp, 10000000 );
+//        dp[ 0 ] = 0; dp[ 1 ] = 0;
+//
+//
+//        for( int i = 1; i < N + 1; i ++ ) {
+//            if( i * 3 < N + 1 ) {
+//                dp[ i * 3 ] = Math.min( dp[ i * 3 ], dp[ i ] + 1 );
+//            }
+//
+//            if( i * 2 < N + 1 ) {
+//                dp[ i * 2 ] = Math.min( dp[ i * 2 ], dp[ i ] + 1 );
+//            }
+//            if( i + 1 < N + 1 ) {
+//                dp[ i + 1 ] = Math.min( dp[ i + 1 ], dp[ i ] + 1 );
+//            }
+//
+//        }
+//
+//        System.out.println( dp[ N ] );
+//
+//
+//    }
+//
+//
+//
+//
+//
+//}

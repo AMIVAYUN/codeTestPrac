@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 
 import java.util.*;
 
-public class Main {
+public class J_10974 {
 	public static StringBuilder builder = new StringBuilder();
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
