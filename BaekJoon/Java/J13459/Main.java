@@ -1,116 +1,211 @@
 package J13459;
 
 
-
-import java.io.*;
-import java.util.StringTokenizer;
-
-
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Main {
 
-    static BufferedReader bf = new BufferedReader( new InputStreamReader( System.in  ) );
-    static StringBuilder sb = new StringBuilder();
+    static BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
     static StringTokenizer token;
-    static int n, m;
-    static char[][] graph;
-    static int[] r, b, e;
-    static boolean flag = false;
-    public static void main( String[] args ) throws IOException {
-        token = new StringTokenizer( bf.readLine() );
-        n = Integer.parseInt(token.nextToken() ); m = Integer.parseInt( token.nextToken() );
 
-        graph = new char[ n ][ m ];
-        for( int i = 0; i < n; i ++ ){
+    static int n, m, graph[][], dx[] = { -1, 1, 0, 0 }, dy[] = { 0, 0, -1, 1 }, red[], blue[], goal[];
+
+    static int MnCnt = 11;
+
+
+
+    public static void main(String[] args) throws IOException {
+        token = new StringTokenizer( bf.readLine() );
+        n = Integer.parseInt(token.nextToken());
+        m = Integer.parseInt(token.nextToken());
+
+        graph = new int[ n ][ m ];
+
+        for( int i = 0; i < n; i++ ){
             String row = bf.readLine();
             for( int j = 0; j < m; j ++ ){
-                graph[ i ][ j ] = row.charAt( j );
-
-                if( graph[ i ][ j ] == 'R' ){
-                    r = new int[]{ i, j };
-                }else if( graph[ i ][ j ] == 'B' ){
-                    b = new int[]{ i, j };
-                }else if( graph[ i ][ j ] == 'O' ){
-                    e = new int[]{ i, j };
-                }
-            }
-        }
-
-
-
-        dfs( 0 );
-        System.out.println( flag ? 1 : 0 );
-
-
-
-
-
-    }
-    static int[] dx = { -1, 1, 0, 0 };
-    static int[] dy = { 0, 0, -1, 1 };
-    private static void dfs( int depth ) {
-
-        if( isEnd() ){
-            if( isRightEnd() ){
-                flag = true;
-            }
-            return;
-        }
-        if( depth == 10 ){
-            return;
-        }
-
-        int r_x = r[ 0 ]; int r_y = r[ 1 ];
-        int b_x = b[ 0 ]; int b_y = b[ 1 ];
-
-
-        for( int i = 0; i < 4; i ++ ){
-            if( flag ) return;
-            int[] nextR = move( r_x, r_y , i);
-            int[] nextB = move( b_x, b_y, i );
-            if( nextR[ 0 ] == nextB[ 0 ] && nextR[ 1 ] == nextB[ 1 ] && graph[ nextR[ 0 ] ][ nextR[ 1 ] ] != 'O' ){
-                if( nextR[ 2 ] > nextB[ 2 ] ){
-                    r[ 0 ] = nextR[ 0 ] - dx[ i ]; r[ 1 ] = nextR[ 1 ] - dy[ i ];
-                    b[ 0 ] = nextB[ 0 ]; b[ 1 ] = nextB[ 1 ];
+                char c = row.charAt( j );
+                if( c == '#' ){
+                    graph[ i ][ j ] = -1;
+                }else if( c == '.'){
+                    graph[ i ][ j ] = 0;
+                }else if( c == 'R' ){
+                    red = new int[]{ i, j };
+                }else if( c == 'B' ){
+                    blue = new int[]{ i, j };
                 }else{
-                    r[ 0 ] = nextR[ 0 ]; r[ 1 ] = nextR[ 1 ];
-                    b[ 0 ] = nextB[ 0 ] - dx[ i ]; b[ 1 ] = nextR[ 1 ] - dy[ i ];
+                    graph[ i ][ j ] = 1;
+                    goal = new int[] { i, j };
                 }
-            }else{
-                r[ 0 ] = nextR[ 0 ]; r[ 1 ] = nextR[ 1 ];
-                b[ 0 ] = nextB[ 0 ]; b[ 1 ] = nextB[ 1 ];
+            }
+        }
 
+        bfs();
+
+//        int[][] next = move( graph, 2, red, blue );
+//
+//        System.out.println( "red: " + Arrays.toString( red ));
+//        System.out.println( "blue: " + Arrays.toString( blue ) );
+//
+//        print( next );
+//        bfs();
+//        move( 3, red, blue );
+//        System.out.println("red " + Arrays.toString( red ));
+//        System.out.println("blue " + Arrays.toString( blue ) );
+//        System.out.println( "goal " + Arrays.toString( goal ));
+        System.out.println( MnCnt < 11 ? 1 : 0 );
+
+
+    }
+
+    static void bfs(){
+        ArrayDeque< Object[] > dq = new ArrayDeque<>();
+        int[] tmpr = { red[ 0 ], red[ 1 ] };
+        int[] tmpb = { blue[ 0 ], blue[ 1 ] };
+        dq.add( new Object[]{ 0, tmpr, tmpb } );
+
+        while( !dq.isEmpty() ){
+
+            Object[] now = dq.poll();
+//            int[][] subGraph = ( int[][] ) now[ 0 ];
+            int cnt = ( int ) now[ 0 ];
+            int[] r = ( int[] ) now[ 1 ];
+            int[] b = ( int[] ) now[ 2 ];
+
+
+            for( int i = 0; i < 4; i ++ ){
+                move( i, r, b );
+//                System.out.println( cnt + " dir:" + i );
+//                System.out.println( "red " + Arrays.toString( red ) );
+//                    System.out.println( "blue " + Arrays.toString( blue ) );
+//                print( next );
+                if( blue[ 0 ] == goal[ 0 ] && blue[ 1 ] == goal[ 1 ] ){
+                    continue;
+                }else if( red[ 0 ] == goal[ 0 ] && red[ 1 ] == goal[ 1 ]){
+//                    System.out.println( i );
+//                    System.out.println( "red " + Arrays.toString( red ) );
+//                    System.out.println( "blue " + Arrays.toString( blue ) );
+//                    print( next );
+//
+//                    System.out.println( "origin : ");
+//                    print( graph );
+//                    System.out.println( "red " + Arrays.toString( r ) );
+//                    System.out.println( "blue " + Arrays.toString( b ) );
+                    MnCnt = Math.min( MnCnt, cnt + 1 );
+                    return;
+                }else{
+                    if( cnt + 1 < 11 ){
+                        tmpr = new int[] { red[ 0 ], red[ 1 ] };
+                        tmpb = new int[] { blue[ 0 ], blue[ 1 ] };
+                        dq.add( new Object[]{ cnt + 1, tmpr, tmpb });
+                    }
+
+                }
+            }
+        }
+
+    }
+
+    static void print ( int[][] graph ){
+        for( int i = 0; i < n; i ++ ){
+            for( int j = 0; j < m; j ++ ){
+                System.out.print( graph[ i ][ j ] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    static void move( int dir, int[] r, int[] b ){
+//        System.out.println("dir: " + dir);
+//        System.out.println( "red : " + Arrays.toString( red ));
+//        System.out.println( "blue : " + Arrays.toString( blue ));
+        /**
+         * 각 방향에서 좀 더 그 방향에 가까운 친구가 먼저 움직여야 된다.
+         */
+
+
+        boolean isRed = isRedFirst( dir, r, b );
+        int[] xys = isRed ? new int[]{ r[ 0 ], r[ 1 ], b[ 0 ], b[ 1 ] } : new int[] { b[ 0 ], b[ 1 ], r[ 0 ], r[ 1 ] };
+
+        int fx, fy, lx, ly;
+        fx = xys[ 0 ]; fy = xys[ 1 ]; lx = xys[ 2 ]; ly = xys[ 3 ];
+
+        while( graph[ fx ][ fy ] >= 0 ){
+//            System.out.println( fx + " " + fy + " : " + dir );
+            if( fx == goal[ 0 ] && fy == goal[ 1 ] ){
+                break;
             }
 
-            dfs( depth + 1 );
-            r[ 0 ] = r_x;
-            r[ 1 ] = r_y;
-            b[ 0 ] = b_x;
-            b[ 1 ] = b_y;
+            int nx = fx + dx[ dir ]; int ny = fy + dy[ dir ];
+
+            if( isIn( nx, ny ) ){
+                if( graph[ nx ][ ny ] < 0 ){
+                    break;
+                }else{
+                    fx = nx;
+                    fy = ny;
+                }
+            }
 
         }
 
-    }
-
-    static int[] move( int i, int j, int dir){
-        int x = i; int y = j; int cnt = 0;
-        while( graph[ x + dx[ dir ] ][ y + dy[ dir ] ] != '#' && graph[ x ][ y ] != 'O' ){
-            x += dx[ dir ];
-            y += dy[ dir ];
-            cnt++;
+        if( !( goal[ 0 ] == fx && goal[ 1 ] == fy ) ){
+            graph[ fx ][ fy ] = ( isRed ) ? -2 : -3;
         }
 
-        return new int[] { x, y, cnt };
+//        print( newGraph );
+        while( graph[ lx ][ ly ] >= 0 ){
+            if( lx == goal[ 0 ] && ly == goal[ 1 ] ){
+
+                break;
+            }
+
+            int nx = lx + dx[ dir ]; int ny = ly + dy[ dir ];
+
+            if( isIn( nx, ny ) ){
+                if( graph[ nx ][ ny ] < 0 ){
+                    break;
+                }else{
+                    lx = nx;
+                    ly = ny;
+                }
+            }
+
+        }
+
+        graph[ fx ][ fy ] = 0;
+        graph[ lx ][ ly ] = 0;
+
+        if( isRed ){
+            red = new int[] { fx, fy };
+            blue = new int[]{ lx, ly };
+        }else{
+            red = new int[] { lx, ly };
+            blue = new int[] { fx, fy };
+        }
+
+
+//        System.out.println( "after :" + Arrays.toString( red ) );
+//        System.out.println( "after :" + Arrays.toString( blue ) );
+
     }
 
-    private static boolean isRightEnd() {
-        return ( r[ 0 ] == e[ 0 ] && r[ 1 ] == e[ 1 ] ) && !( b[ 0 ] == e[ 0 ] && b[ 1 ] == e[ 1 ] );
+    static boolean isIn( int x, int y ){
+        return x >=0 && x < n && y >= 0 && y < m;
     }
 
-    private static boolean isEnd() {
-        return ( r[ 0 ] == e[ 0 ] && r[ 1 ] == e[ 1 ] ) || ( b[ 0 ] == e[ 0 ] && b[ 1 ] == e[ 1 ] );
+    static boolean isRedFirst( int dir, int[] red, int[] blue ){
+        if( dir == 0 ){
+            return red[ 0 ] <= blue[ 0 ];
+        }else if( dir == 1 ){
+            return red[ 0 ] >= blue[ 0 ];
+        }else if( dir == 2 ){
+            return red[ 1 ] <= blue[ 1 ];
+        }else{
+            return red[ 1 ] >= blue[ 1 ];
+        }
     }
 }
