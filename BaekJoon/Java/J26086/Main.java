@@ -35,144 +35,75 @@ public class Main {
      *              1이면 child가 앞에 붙음
      */
     static int size = 0;
-//    static Segment[] segments;
+    static boolean counter[];
+
+
     public static void main(String[] args) throws IOException {
         token = new StringTokenizer( bf.readLine() );
         n = Integer.parseInt( token.nextToken() );
         q = Integer.parseInt( token.nextToken() );
         k = Integer.parseInt( token.nextToken() );
-//        segments = new Segment[ q ];
-        ArrayList< Integer > nums = new ArrayList<>();
-        ArrayList< Integer > contains = new ArrayList<>();
-        int lastSort = 0;
-        ArrayList<ArrayList<Integer>> commands = new ArrayList<>();
-        ArrayList< Integer > command = new ArrayList<>();
-        ArrayList<Integer> start = new ArrayList<>();
-        int startContext = 0;
-        for( int i = 0; i < q; i ++ ){
-            token = new StringTokenizer( bf.readLine() );
-            if( token.countTokens() == 1 ){
+
+        counter = new boolean[ n + 1 ];
+
+        ArrayDeque< Integer > dq = new ArrayDeque<>();
+        int pos = 0;
+
+        for( int i = 0; i < q; i ++ ) {
+            token = new StringTokenizer(bf.readLine());
+            if (token.countTokens() == 1) {
                 int cmd = Integer.parseInt(token.nextToken());
-                command.add( cmd );
-                commands.add(command);
-                command = new ArrayList<>();
-//                Segment segment = new Segment( contains );
-//                contains = new ArrayList<>();
-
                 if( cmd == 1 ){
-//                    ArrayList< Integer > next = (ArrayList<Integer>) nums.clone();
-//                    Collections.sort( next );
-//                    segment.arrayList = next;
 
-                    lastSort = size++;
-                    Collections.sort( nums );
-                    start = (ArrayList<Integer>) nums.clone();
-                    startContext = context;
-//                    segments[ size++ ] = segment;
-                }else{
-                    if( size++ > 0 ) {
-//                        segment.isReversed ^= 1;
-                        context ^= 1;
-//                    }else{
-////                        segment.isReversed = 1;
-//
-//                    }
-//                    segments[ size++ ] = segment;
+                    while( !dq.isEmpty() ){
+                        int value = dq.poll();
+                        counter[ value ] = true;
+                        size++;
                     }
+
+                    dq.add( 0 );
+                    context = 0;
+
+                }else{
+                    context ^= 1;
+                }
+            } else {
+                token.nextToken();
+                //정순
+                if( context == 0 ){
+                    dq.addFirst( Integer.parseInt( token.nextToken() ) );
+                }else{
+                    dq.addLast( Integer.parseInt( token.nextToken() ) );
+                }
+            }
+        }
+
+        int cnt = 1;
+        int ans = context == 0 ? dq.peek() : dq.peekLast();
+        System.out.println(dq.toString());
+        while( cnt <= k ){
+            int value = context == 0 ? dq.poll() : dq.pollLast();
+//            System.out.println( cnt + " " + value );
+            if( value == 0 ){
+                int temp = context == 0 ? 1 : n ;
+                while( temp < ( n + 1 ) && temp > 0 && cnt <= k  ){
+//                    System.out.println( temp + " " + counter[ temp ] + cnt );
+                    if( counter[ temp ] ){
+                        ans = temp;
+                        cnt ++;
+                    }
+                    temp += context == 0 ? 1 : -1;
                 }
             }else{
-                command.add(Integer.parseInt(token.nextToken()));
-                nums.add( Integer.parseInt( token.nextToken() ) );
-                command.add( nums.get( nums.size() - 1 ) );
-                commands.add( command );
-                command = new ArrayList<>();
-                size++;
-//                if( context == 0 ){
-//                    contains.add( 0, nums.get( nums.size() -1 ) );
-//                }else{
-//                    contains.add( nums.get( nums.size() -1 ) );
-//                }
-
+                ans = value;
+                cnt++;
             }
+
         }
-//     *              0이면 child가 뒤에 붙고
-//     *              1이면 child가 앞에 붙음
-
-//        System.out.println(size );
-        context = startContext;
-        ArrayList< Integer >[] beforeAfter = new ArrayList[2];
-        beforeAfter[ 0 ] = new ArrayList<>();
-        beforeAfter[ 1 ] = new ArrayList<>();
-
-        if( startContext == 1 ){
-            Collections.sort( start, Collections.reverseOrder() );
-        }
-        for( int i = lastSort + 1; i < size; i ++ ){
-            ArrayList<Integer> now = commands.get( i );
-            if (now.get(0) == 0) {
-                beforeAfter[context].add(now.get(1));
-            } else {
-                context ^= 1;
-            }
-        }
-        ArrayList<Integer> result = beforeAfter[ context ];
-        result.addAll( start );
-        result.addAll( beforeAfter[ context ^ 1 ] );
-
-//        System.out.println( result );
-
-        System.out.println(result.get( k - 1 ));
-        //sol1
-//        System.out.println( Arrays.toString( segments ));
-//        ArrayList<Integer> serial = segments[lastSort].arrayList;
-//        Collections.sort( serial );
-//        int semiContext = segments[lastSort].isReversed;
-//        ArrayList<Integer> before = new ArrayList<>();
-//        ArrayList<Integer> after = new ArrayList<>();
-//
-//        for( int idx = lastSort + 1; idx < size; idx ++ ){
-//            //전부 add all로 하니깐 터진다. 이 부분을 최적화
-////            if( segments[ idx ].isReversed == 1 ){
-////                ArrayList<Integer> temp = segments[idx].contains;
-////                temp.addAll( serial );
-////                serial = temp;
-////            }else{
-////                serial.addAll( segments[ idx ].contains );
-////            }
-//            if( segments[ idx ].isReversed == 1 ){
-//
-//            }else{
-//
-//            }
-//        }
-//
-//        int target = context == 0 ? k -1 :serial.size() - k;
-//
-//        System.out.println(serial.get( target ));
 
 
+        System.out.println( ans );
     }
 
 
-
-
-//    static class Segment{
-//
-//        int isReversed = 0;
-//        ArrayList< Integer > arrayList;
-//        ArrayList< Integer > contains;
-//
-//        public Segment(ArrayList<Integer> arrayList) {
-//            this.contains = arrayList;
-//        }
-//
-//        @Override
-//        public String toString() {
-//            return "Segment{" +
-//                    "isReversed=" + isReversed +
-//                    ", arrayList=" + arrayList +
-//                    ", nums=" + contains +
-//                    '}';
-//        }
-//    }
 }
