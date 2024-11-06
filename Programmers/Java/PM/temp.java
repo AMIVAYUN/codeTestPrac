@@ -2,26 +2,16 @@ package PM;
 
 public class temp {
     public static void main(String[] args) {
-        Temp temp = new Temp1();
-        temp.run();
+        String a = "1234";
+        String b = new String("12");
+        String c = (b + "34");
+        System.out.println( a.equals( c ) );
+        System.out.println( a == c );
+
+
+        String d = "1234";
+        String e = "12" + "34";
+        System.out.println( d.equals( e ) );
+        System.out.println( d == e );
     }
-    static interface Temp{
-
-        public void run();
-    }
-
-    static class Temp1 implements Temp{
-        public void run(){
-            System.out.println("temp1");
-        }
-    }
-
-    static class Temp2 implements Temp{
-
-        public void run(){
-            System.out.println("temp2");
-        }
-    }
-
-
 }
