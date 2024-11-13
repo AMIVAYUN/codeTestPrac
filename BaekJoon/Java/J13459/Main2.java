@@ -18,7 +18,8 @@ public class Main2 {
     static boolean flag = false;
     public static void main( String[] args ) throws IOException {
         token = new StringTokenizer( bf.readLine() );
-        n = Integer.parseInt(token.nextToken() ); m = Integer.parseInt( token.nextToken() );
+        n = Integer.parseInt(token.nextToken() );
+        m = Integer.parseInt( token.nextToken() );
 
         graph = new char[ n ][ m ];
         for( int i = 0; i < n; i ++ ){
