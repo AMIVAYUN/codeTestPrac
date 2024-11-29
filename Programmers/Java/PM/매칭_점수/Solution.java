@@ -1,7 +1,7 @@
 //package PM.매칭_점수;
 //
 //import java.util.*;
-//class Solution {
+//class Solution.java {
 //    /**
 //
 //     위상 정렬은 서로 참조하면 이뤄질 수 없다. 허나 여기엔 링크에 대한 제약조건에 단방향이라는 조건이 없다.
@@ -16,7 +16,7 @@
 //     package PM.매칭_점수;
 //
 //     import java.util.*;
-//     class Solution {
+//     class Solution.java {
 //     /**
 //
 //     위상 정렬은 서로 참조하면 이뤄질 수 없다. 허나 여기엔 링크에 대한 제약조건에 단방향이라는 조건이 없다.
