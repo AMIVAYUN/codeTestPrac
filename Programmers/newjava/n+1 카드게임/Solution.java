@@ -7,23 +7,23 @@ class Solution {
         HashMap< Integer, Boolean > map = new HashMap<>();
         boolean[] visit = new boolean [ n + 1 ];
         boolean[] used = new boolean [ n + 1 ];
-        for( int i = 0; i < n / 3; i ++ ) {
+        for( int i = 0; i < debug item 154n / 3; i ++ ) {
             map.put( cards[ i ], true );
             visit[ cards[ i ] ] = true;
         }
 
 
-        outer: for( ; answer <= n / 3 + 1; answer ++ ){
-            // System.out.println( "round == " + answer + " coin = " + coin );
-            int cardMx = n / 3 + ( 2 * ( answer ) );
-            if( cardMx - 1 < n && cardMx - 2 < n ) {
-                visit[ cards[ cardMx - 1 ] ] = true;
-                visit[ cards[ cardMx - 2 ] ] = true;
-                // System.out.println( "visit check " + cards[ ( cardMx - 1 ) ]+ " , " + cards[ ( cardMx - 2 ) ] );
-            }
+            outer: for( ; answer <= n / 3 + 1; answer ++ ){
+                // System.out.println( "round == " + answer + " coin = " + coin );
+                int cardMx = n / 3 + ( 2 * ( answer ) );
+                if( cardMx - 1 < n && cardMx - 2 < n ) {
+                    visit[ cards[ cardMx - 1 ] ] = true;
+                    visit[ cards[ cardMx - 2 ] ] = true;
+                    // System.out.println( "visit check " + cards[ ( cardMx - 1 ) ]+ " , " + cards[ ( cardMx - 2 ) ] );
+                }
 
 
-            for( int card: map.keySet() ) {
+                for( int card: map.keySet() ) {
                 if( map.containsKey( n + 1 - card ) && !used[ n + 1 - card ] ){
                     used[ n + 1 - card ] = true;
                     used[ card ] = true;
